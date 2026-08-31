@@ -1,149 +1,106 @@
-//Contact
-var submitButton = document.getElementById('submit')
+/* CrossTech contact form → Firestore `leads`.
+   Vanilla JS. The Firebase SDK + config are loaded by contact.html from
+   Firebase Hosting's reserved URLs (/__/firebase/...), so NO credentials
+   exist in this repo. The lead document shape below is consumed by the
+   mail process on the Firebase project side — do not rename fields. */
+(function () {
+  "use strict";
 
-if (submitButton) {
-    submitButton.addEventListener('click', event => {
-        var f = $('form.contactForm').find('.form-group'),
-            ferror = false,
-            emailExp = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i;
+  var form = document.getElementById("contactForm");
+  if (!form) return;
 
-        f.children('input').each(function () { // run all inputs
+  var EMAIL_RE = /^[^\s()<>@,;:\/]+@\w[\w.-]+\.[a-z]{2,}$/i;
 
-            var i = $(this); // current input
-            var rule = i.attr('data-rule');
+  function validateField(input) {
+    var rule = input.getAttribute("data-rule");
+    if (!rule) return true;
 
-            if (rule !== undefined) {
-                var ierror = false; // error flag for current input
-                var pos = rule.indexOf(':', 0);
-                if (pos >= 0) {
-                    var exp = rule.substr(pos + 1, rule.length);
-                    rule = rule.substr(0, pos);
-                } else {
-                    rule = rule.substr(pos + 1, rule.length);
-                }
+    var value = input.value.trim();
+    var ok = true;
+    var parts = rule.split(":");
 
-                switch (rule) {
-                    case 'required':
-                        if (i.val() === '') {
-                            ferror = ierror = true;
-                        }
-                        break;
-
-                    case 'minlen':
-                        if (i.val().length < parseInt(exp)) {
-                            ferror = ierror = true;
-                        }
-                        break;
-
-                    case 'email':
-                        if (!emailExp.test(i.val())) {
-                            ferror = ierror = true;
-                        }
-                        break;
-
-                    case 'checked':
-                        if (!i.is(':checked')) {
-                            ferror = ierror = true;
-                        }
-                        break;
-
-                    case 'regexp':
-                        exp = new RegExp(exp);
-                        if (!exp.test(i.val())) {
-                            ferror = ierror = true;
-                        }
-                        break;
-                }
-                i.next('.validation').html((ierror ? (i.attr('data-msg') !== undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
-            }
-        });
-        f.children('textarea').each(function () { // run all inputs
-
-            var i = $(this); // current input
-            var rule = i.attr('data-rule');
-
-            if (rule !== undefined) {
-                var ierror = false; // error flag for current input
-                var pos = rule.indexOf(':', 0);
-                if (pos >= 0) {
-                    var exp = rule.substr(pos + 1, rule.length);
-                    rule = rule.substr(0, pos);
-                } else {
-                    rule = rule.substr(pos + 1, rule.length);
-                }
-
-                switch (rule) {
-                    case 'required':
-                        if (i.val() === '') {
-                            ferror = ierror = true;
-                        }
-                        break;
-
-                    case 'minlen':
-                        if (i.val().length < parseInt(exp)) {
-                            ferror = ierror = true;
-                        }
-                        break;
-                }
-                i.next('.validation').html((ierror ? (i.attr('data-msg') != undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
-            }
-        });
-        if (ferror) {
-            return false;
-        } else {
-            var leadName = document.getElementById('name').value;
-            var leadEmail = document.getElementById('email').value;
-            var leadSubject = document.getElementById('subject').value;
-            var leadMessage = document.getElementById('message').value;
-
-            if (leadSubject != "" && leadEmail != "" && leadName != "") {
-                var db = firebase.firestore();
-                var docRef = db.collection("leads");
-                var ref = generateReference(10);
-
-                docRef.add({
-                    name: sanitizeString(leadName),
-                    subject: sanitizeString(leadSubject),
-                    to: sanitizeString(leadEmail),
-                    query: sanitizeString(leadMessage),
-                    message: {
-                        subject: 'CrossTech website query - ' + ref,
-                        html: `<p>Thank you for your email.</p>
-                      <p>This is an automated response to let you know that we have received your request and will respond to you within the next one to two working days.</p>
-                      <p>Your reference number is ${ref}</p>`,
-                        text: `Thank you for your email. This is an automated response to let you know that we have received your request and will respond to you within the next one to two working days. Your reference number is ${ref}`,
-                        ccUids: 'h2irRfsH1pEk5vmx3oNn'
-                    },
-                    timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
-                    actioned: false,
-                    emailSent: false,
-                    leadFrom: 'Website',
-                    reference: ref
-                }).then(function () {
-                    $('.contactForm').hide();
-                    $('<p>' + ref + '<p/>').appendTo('#sendMessage');
-                    $('.sendMessage').css('display', 'block');
-                    $('.errorMessage').css('display', 'none');
-                }).catch(function (err) {
-                    console.log(err);
-                    $('.errorMessage').css('display', 'block');
-                });
-            }
-        }
-    });
-}
-
-function generateReference(length) {
-    var result = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    switch (parts[0]) {
+      case "required":
+        ok = value !== "";
+        break;
+      case "minlen":
+        ok = value.length >= parseInt(parts[1], 10);
+        break;
+      case "email":
+        ok = EMAIL_RE.test(value);
+        break;
     }
-    return result;
-}
 
-function sanitizeString(oldString) {
-    return oldString.replace(/[^@.,!a-zA-Z0-9 ]/g, "");
-}
+    var msgEl = input.parentElement.querySelector(".validation");
+    if (msgEl) msgEl.textContent = ok ? "" : (input.getAttribute("data-msg") || "Invalid input");
+    return ok;
+  }
 
+  function generateReference(length) {
+    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var out = "";
+    for (var i = 0; i < length; i++) {
+      out += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return out;
+  }
+
+  function sanitizeString(s) {
+    return s.replace(/[^@.,!a-zA-Z0-9 ]/g, "");
+  }
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    var fields = form.querySelectorAll("input[data-rule], textarea[data-rule]");
+    var allValid = true;
+    fields.forEach(function (f) {
+      if (!validateField(f)) allValid = false;
+    });
+    if (!allValid) return;
+
+    var okBox = document.getElementById("sendMessage");
+    var errBox = document.getElementById("errorMessage");
+    var submitBtn = document.getElementById("submit");
+    var ref = generateReference(10);
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
+
+    var db = firebase.firestore();
+    db.collection("leads")
+      .add({
+        name: sanitizeString(document.getElementById("name").value),
+        subject: sanitizeString(document.getElementById("subject").value),
+        to: sanitizeString(document.getElementById("email").value),
+        query: sanitizeString(document.getElementById("message").value),
+        message: {
+          subject: "CrossTech website query - " + ref,
+          html:
+            "<p>Thank you for your email.</p>" +
+            "<p>This is an automated response to let you know that we have received your request and will respond to you within the next one to two working days.</p>" +
+            "<p>Your reference number is " + ref + "</p>",
+          text:
+            "Thank you for your email. This is an automated response to let you know that we have received your request and will respond to you within the next one to two working days. Your reference number is " + ref,
+          ccUids: "h2irRfsH1pEk5vmx3oNn"
+        },
+        timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+        actioned: false,
+        emailSent: false,
+        leadFrom: "Website",
+        reference: ref
+      })
+      .then(function () {
+        form.hidden = true;
+        document.getElementById("refNumber").textContent = ref;
+        okBox.classList.add("visible");
+        errBox.classList.remove("visible");
+      })
+      .catch(function (err) {
+        console.error("Lead submit failed:", err);
+        errBox.classList.add("visible");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send message";
+      });
+  });
+})();

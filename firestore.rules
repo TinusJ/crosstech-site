@@ -1,27 +1,52 @@
+rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // Contact-form submissions. These contain personal data (names, emails,
+    // messages) and must NEVER be publicly readable. The back-office / mail
+    // process reads them via the Admin SDK, which bypasses these rules.
     match /leads/{leadID} {
-    allow read;
-    allow create; 
-      
+      allow read: if false;
+      allow update, delete: if false;
+      allow create: if nameIsValid()
+        && emailIsValid()
+        && subjectIsValid()
+        && messageIsValid()
+        && request.resource.data.leadFrom == 'Website'
+        && request.resource.data.actioned == false
+        && request.resource.data.emailSent == false;
+
       function nameIsValid() {
-      	return request.resource.data.name is string &&
-        	request.resource.data.name.size() > 3;
+        return request.resource.data.name is string
+          && request.resource.data.name.size() > 3
+          && request.resource.data.name.size() < 120;
       }
-      
+
+      // The site writes the visitor's email address in the `to` field.
       function emailIsValid() {
-      	return request.resource.data.email is string;
+        return request.resource.data.to is string
+          && request.resource.data.to.size() > 5
+          && request.resource.data.to.size() < 200
+          && request.resource.data.to.matches('.*@.*[.].*');
       }
-      
+
       function subjectIsValid() {
-      	return request.resource.data.subject is string &&
-        	request.resource.data.name.size() > 3;
+        return request.resource.data.subject is string
+          && request.resource.data.subject.size() > 3
+          && request.resource.data.subject.size() < 200;
       }
-      
+
+      // The message body is written in the `query` field.
       function messageIsValid() {
-      	return request.resource.data.message is string &&
-        	request.resource.data.name.size() > 3;
+        return request.resource.data.query is string
+          && request.resource.data.query.size() > 0
+          && request.resource.data.query.size() < 5000;
       }
+    }
+
+    // Everything else: locked down.
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }

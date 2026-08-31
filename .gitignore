@@ -63,3 +63,6 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+# Retired pre-2026 template site (kept for reference, not deployed, not committed)
+_old/

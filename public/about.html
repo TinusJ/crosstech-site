@@ -3,229 +3,135 @@
 
 <head>
     <meta charset="utf-8">
-    <title>CrossTech - About Us</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>About — CrossTech</title>
     <meta name="description"
-        content="We turn fancy designs and interfaces into a stable and pixel-perfect mobile application.">
-    <meta name="keywords" content="Mobile App,Mobile App Development,Custom Apps,
-Android,iOS,Support,Specialists,Mobile Development Company,App Industry">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="img/favicon.png" rel="icon">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700"
+        content="CrossTech started in 2019 as a mobile studio and grew into an AI-first software company. Here's what drives us.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
         rel="stylesheet">
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <header id="header" class="header-scrolled">
-        <div class="container-fluid">
-
-            <div id="logo" class="pull-left">
-                <h1><a href="./index.html" class="scrollto">CrossTech</a></h1>
-            </div>
-
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li><a href="./index.html">Home</a></li>
-                    <li class="menu-active"><a href="#">About Us</a></li>
-                    <li><a href="./services.html">Services</a></li>
-                    <!--                    <li><a href="./portfolio.html">Portfolio</a></li>-->
-                    <li><a href="./contact.html">Contact</a></li>
-                    <li><a href="./privacy.html">Privacy Policy</a></li>
-                    <li><a href="./terms.html">Terms & Conditions</a></li>
-                </ul>
+    <header class="site-header" id="siteHeader">
+        <div class="container">
+            <a class="logo" href="/">CrossTech<span class="dot">.</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/">Home</a>
+                <a href="/about" aria-current="page">About</a>
+                <a href="/services">Services</a>
+                <a href="/contact">Contact</a>
+                <a class="btn btn-primary" href="/contact">Start a project</a>
             </nav>
         </div>
     </header>
 
-    <main id="main" class="non-index">
-        <section id="about">
+    <main>
+        <section class="page-head">
             <div class="container">
+                <span class="eyebrow">About us</span>
+                <h1>From mobile studio to <span class="grad-text">AI-first</span> software company.</h1>
+                <p>CrossTech was founded in 2019 in Pretoria as a mobile app development studio. The tools changed, and
+                    so did we: today we build software of every shape — web, cloud, mobile — with artificial
+                    intelligence at the centre of how we design it and what we deliver.</p>
+            </div>
+        </section>
 
-                <header class="section-header">
-                    <h3>About Us</h3>
-                    <p>We are a software development company focused on creating unique user centered mobile and web
-                        solutions.</p>
-                </header>
-
-                <div class="row about-cols">
-
-                    <div class="col-md-4">
-                        <div class="about-col">
-                            <div class="img">
-                                <img src="img/about-mission.jpg" alt="Our Mission" class="img-fluid">
-                                <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
-                            </div>
-                            <h2 class="title"><a href="#">Our Mission</a></h2>
-                            <p>
-                                We exist to create superior and innovative mobile apps. We <strong>strive to
-                                    learn</strong> and improve on our existing architecture to be the best fit for our
-                                clients, by providing excellent support and communications throughout the product
-                                life cycle.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="about-col">
-                            <div class="img">
-                                <img src="img/about-plan.jpg" alt="Our Plan" class="img-fluid">
-                                <div class="icon"><i class="ion-ios-list-outline"></i></div>
-                            </div>
-                            <h2 class="title"><a href="#">Our Plan</a></h2>
-                            <p>
-                                Creating long term client relationships built around <strong>trust and
-                                    reliability</strong>. Providing full support with your mobile app, from start to
-                                end, and beyond. We will ensure that any of your queries will never be left unanswered.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="about-col">
-                            <div class="img">
-                                <img src="img/about-vision.jpg" alt="Our Vision" class="img-fluid">
-                                <div class="icon"><i class="ion-ios-eye-outline"></i></div>
-                            </div>
-                            <h2 class="title"><a href="#">Our Vision</a></h2>
-                            <p>
-                                To be <strong>the best</strong> mobile development company in South Africa, and to push
-                                our mission, plan and vision, globally.
-                            </p>
-                        </div>
-                    </div>
-
+        <section class="section">
+            <div class="container">
+                <div class="grid cols-3">
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#127919;</div>
+                        <h3>Our mission</h3>
+                        <p>To build superior, intelligent software that solves real problems — and to keep learning and
+                            improving on our craft so every product we ship is better than the last.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#129309;</div>
+                        <h3>Our approach</h3>
+                        <p>Long-term relationships built on trust and reliability. We work with you through the whole
+                            product life cycle — from first idea to running system — and no query goes unanswered.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#128640;</div>
+                        <h3>Our vision</h3>
+                        <p>To be South Africa's leading AI software studio — proving that world-class intelligent
+                            software gets built here — and to take that standard global.</p>
+                    </article>
                 </div>
+            </div>
+        </section>
 
+        <section class="section alt">
+            <div class="container">
+                <span class="eyebrow reveal">What we believe</span>
+                <h2 class="section-title reveal">AI is a tool, not a slogan.</h2>
+                <div class="grid cols-2" style="margin-top: 1.5rem;">
+                    <article class="card reveal">
+                        <h3>Honest engineering</h3>
+                        <p>If a problem doesn't need a model, we won't force one in. When it does, we build it
+                            properly: evaluated, monitored, and owned end to end.</p>
+                    </article>
+                    <article class="card reveal">
+                        <h3>Ship, then keep shipping</h3>
+                        <p>Software isn't done at launch. We stay involved — supporting, measuring and improving — for
+                            as long as the product lives.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="cta-band reveal">
+                    <h2>Let's build something intelligent together.</h2>
+                    <p>Tell us about your product, your workflow, or the problem that won't go away.</p>
+                    <a class="btn btn-primary" href="/contact">Get in touch</a>
+                </div>
             </div>
         </section>
     </main>
-    <footer id="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
 
-                    <div class="col-lg-3 col-md-6 footer-info">
-                        <h3>CrossTech</h3>
-                        <p>We create Mobile Apps that are a Blend of Artistry and Simplicity. Through our Apps, we
-                            deliver
-                            Thrilling, Useful Brand Experiences.</p>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><i class="ion-ios-arrow-right"></i><a href="./index.html">Home</a></li>
-                            <li><i class="ion-ios-arrow-right"></i><a href="#">About Us</a></li>
-                            <li><i class="ion-ios-arrow-right"></i><a href="./services.html">Services</a></li>
-                            <!--                            <li><i class="ion-ios-arrow-right"></i><a href="./portfolio.html">Portfolio</a></li>-->
-                            <li><i class="ion-ios-arrow-right"></i><a href="./contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h4>Contact Us</h4>
-                        <p>
-                            Pretoria <br>
-                            Gauteng<br>
-                            South Africa <br>
-                            <strong>Email:</strong> info@crosstech.solutions<br>
-                        </p>
-
-
-                        <div class="social-links">
-                            <a href="https://twitter.com/CrossTech5" class="twitter" target="_blank"><i
-                                    class="fa fa-twitter"></i></a>
-                            <!-- <a href="#" class="facebook"><i class="fa fa-facebook"></i></a> -->
-                            <a href="https://www.instagram.com/crosstech_za" class="instagram" target="_blank"><i
-                                    class="fa fa-instagram"></i></a>
-                            <!-- <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a> -->
-                            <!-- <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a> -->
-                        </div>
-
-
-                    </div>
-                    <!-- 
-                    <div class="col-lg-3 col-md-6 footer-newsletter">
-                        <h4>Our Newsletter</h4>
-                        <p>Subscribe to our newsletter to always receive news on our latest product releases and more.
-                        </p>
-                        <form
-                            action="https://gmail.us20.list-manage.com/subscribe/post?u=a048042b3a513aceec9065eca&amp;id=24cb9b3293"
-                            method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
-                            class="validate" target="_blank" novalidate>
-                            <div id="mc_embed_signup_scroll">
-
-                                <div class="mc-field-group">
-                                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input
-                                            type="text" name="b_a048042b3a513aceec9065eca_24cb9b3293" tabindex="-1"
-                                            value=""></div>
-                                    <input type="email" placeholder="Email" value="" name="EMAIL"
-                                        class="required email"><input type="submit" value="Subscribe" name="subscribe"
-                                        class="button">
-                                </div>
-                                <div id="mce-responses" class="clear">
-                                    <div class="response" id="mce-error-response" style="display:none"></div>
-                                    <div class="response" id="mce-success-response" style="display:none"></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div> -->
-                    <script type='text/javascript'
-                        src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
-                    <script type='text/javascript'>
-                        (function ($) {
-                            window.fnames = new Array();
-                            window.ftypes = new Array();
-                            fnames[0] = 'EMAIL';
-                            ftypes[0] = 'email';
-                            fnames[1] = 'FNAME';
-                            ftypes[1] = 'text';
-                            fnames[2] = 'LNAME';
-                            ftypes[2] = 'text';
-                            fnames[3] = 'ADDRESS';
-                            ftypes[3] = 'address';
-                            fnames[4] = 'PHONE';
-                            ftypes[4] = 'phone';
-                            fnames[5] = 'BIRTHDAY';
-                            ftypes[5] = 'birthday';
-                        }(jQuery));
-                        var $mcj = jQuery.noConflict(true);
-                    </script>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>CrossTech</h4>
+                    <p>An AI-first software studio in Pretoria, South Africa. We design, build and run intelligent
+                        software — and the platforms it lives on.</p>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get in touch</h4>
+                    <p>Pretoria, Gauteng, South Africa<br>
+                        <a href="mailto:info@crosstech.solutions">info@crosstech.solutions</a>
+                    </p>
+                    <p><a href="https://twitter.com/CrossTech5" target="_blank" rel="noopener">X / Twitter</a> &middot;
+                        <a href="https://www.instagram.com/crosstech_za" target="_blank" rel="noopener">Instagram</a>
+                    </p>
                 </div>
             </div>
-        </div>
-
-        <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong>CrossTech</strong>. All Rights Reserved
+            <div class="footer-bottom">
+                <span>&copy; <span id="year"></span> CrossTech. All rights reserved.</span>
+                <span><a href="/privacy">Privacy Policy</a> &middot; <a href="/terms">Terms &amp;
+                        Conditions</a></span>
             </div>
         </div>
     </footer>
 
-    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
-    <script src="lib/jquery/jquery.min.js"></script>
-    <script src="lib/jquery/jquery-migrate.min.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/superfish/hoverIntent.js"></script>
-    <script src="lib/superfish/superfish.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
-    <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-    <script src="contactform/contactform.js"></script>
     <script src="js/main.js"></script>
-
 </body>
 
 </html>
