@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "crosstech-1adc3",
+    "default": "crosstech-site",
     "production": "crosstech-site"
   },
   "targets": {},
