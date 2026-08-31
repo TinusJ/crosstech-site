@@ -1,28 +1,39 @@
 /**
  * CrossTech website Cloud Functions.
  *
- * sendLeadEmails — fires when the contact form writes a document into the
- * `leads` collection. Sends (1) the auto-reply email to the visitor using
- * the `message` payload the website already writes, and (2) an internal
- * notification to the CrossTech inbox. Marks the lead with `emailSent`.
+ * sendLeadEmails — fires when the contact form writes a document into
+ * the `leads` collection. Composes both emails server-side from the
+ * lead's data fields (see emailTemplates.ts) and sends (1) a branded
+ * auto-reply to the visitor and (2) an internal notification to the
+ * CrossTech inbox. Marks the lead with `emailSent`. Any `message`
+ * payload written by old cached pages is ignored.
  *
- * SMTP configuration comes from Firebase params/secrets — NEVER from this
- * public repo. On first deploy the CLI prompts for:
- *   SMTP_HOST, SMTP_PORT, SMTP_USER, MAIL_FROM, MAIL_NOTIFY (params)
- *   SMTP_PASS (secret: `firebase functions:secrets:set SMTP_PASS`)
+ * Sends through Gmail (Google Workspace) using OAuth2 — the supported
+ * way for server apps; no app passwords involved. Configuration comes
+ * from Firebase params/secrets — NEVER from this public repo:
+ *   params : SMTP_USER (the Workspace user, e.g.
+ *            tinus@crosstech.solutions),
+ *            GMAIL_CLIENT_ID, MAIL_FROM, MAIL_NOTIFY
+ *   secrets: GMAIL_CLIENT_SECRET, GMAIL_REFRESH_TOKEN
+ * One-time Google setup (OAuth consent screen, client ID, refresh
+ * token via OAuth playground) is documented in docs/architecture.md.
  */
 import {onDocumentCreated} from "firebase-functions/v2/firestore";
 import {defineSecret, defineString} from "firebase-functions/params";
 import {logger} from "firebase-functions/v2";
 import * as admin from "firebase-admin";
 import * as nodemailer from "nodemailer";
+import {
+  buildAutoReplyEmail,
+  buildNotificationEmail,
+} from "./emailTemplates";
 
 admin.initializeApp();
 
-const smtpHost = defineString("SMTP_HOST");
-const smtpPort = defineString("SMTP_PORT", {default: "465"});
 const smtpUser = defineString("SMTP_USER");
-const smtpPass = defineSecret("SMTP_PASS");
+const clientId = defineString("GMAIL_CLIENT_ID");
+const clientSecret = defineSecret("GMAIL_CLIENT_SECRET");
+const refreshToken = defineSecret("GMAIL_REFRESH_TOKEN");
 const mailFrom = defineString("MAIL_FROM", {
   default: "CrossTech <info@crosstech.solutions>",
 });
@@ -30,25 +41,18 @@ const mailNotify = defineString("MAIL_NOTIFY", {
   default: "info@crosstech.solutions",
 });
 
-interface LeadMessage {
-  subject?: string;
-  html?: string;
-  text?: string;
-  ccUids?: string;
-}
-
 interface Lead {
   name?: string;
   subject?: string;
   to?: string;
   query?: string;
-  message?: LeadMessage;
   reference?: string;
+  timestamp?: admin.firestore.Timestamp;
   emailSent?: boolean;
 }
 
 export const sendLeadEmails = onDocumentCreated(
-    {document: "leads/{leadId}", secrets: [smtpPass]},
+    {document: "leads/{leadId}", secrets: [clientSecret, refreshToken]},
     async (event) => {
       const snap = event.data;
       if (!snap) {
@@ -62,35 +66,44 @@ export const sendLeadEmails = onDocumentCreated(
         });
         return;
       }
-      if (!lead.to || !lead.message) {
-        logger.warn("sendLeadEmails: lead missing `to` or `message`", {
+      if (!lead.to) {
+        logger.warn("sendLeadEmails: lead missing `to`", {
           leadId: event.params.leadId,
         });
         return;
       }
 
-      const port = parseInt(smtpPort.value(), 10);
       const transporter = nodemailer.createTransport({
-        host: smtpHost.value(),
-        port: port,
-        secure: port === 465,
+        service: "gmail",
         auth: {
+          type: "OAuth2",
           user: smtpUser.value(),
-          pass: smtpPass.value(),
+          clientId: clientId.value(),
+          clientSecret: clientSecret.value(),
+          refreshToken: refreshToken.value(),
         },
       });
 
       const ref = lead.reference ?? event.params.leadId;
+      const leadData = {
+        name: lead.name,
+        subject: lead.subject,
+        to: lead.to,
+        query: lead.query,
+        receivedAt: lead.timestamp ?
+          lead.timestamp.toDate() : new Date(),
+      };
+      const autoReply = buildAutoReplyEmail(leadData, ref);
+      const notification = buildNotificationEmail(leadData, ref);
 
       try {
-        // 1. Auto-reply to the visitor (payload written by the website).
+        // 1. Branded auto-reply to the visitor.
         await transporter.sendMail({
           from: mailFrom.value(),
           to: lead.to,
-          subject: lead.message.subject ??
-            `CrossTech website query - ${ref}`,
-          text: lead.message.text,
-          html: lead.message.html,
+          subject: autoReply.subject,
+          text: autoReply.text,
+          html: autoReply.html,
         });
 
         // 2. Internal notification with the lead's content.
@@ -98,15 +111,9 @@ export const sendLeadEmails = onDocumentCreated(
           from: mailFrom.value(),
           to: mailNotify.value(),
           replyTo: lead.to,
-          subject: `New website lead ${ref}: ${lead.subject ?? ""}`,
-          text: [
-            `Reference: ${ref}`,
-            `Name: ${lead.name ?? ""}`,
-            `Email: ${lead.to}`,
-            `Subject: ${lead.subject ?? ""}`,
-            "",
-            lead.query ?? "",
-          ].join("\n"),
+          subject: notification.subject,
+          text: notification.text,
+          html: notification.html,
         });
 
         await snap.ref.update({emailSent: true});

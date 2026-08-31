@@ -109,3 +109,29 @@ to avoid the CLI's delete-live-functions prompt) → single
 passthrough, `--skip-functions`. Functions toolchain notes: `skipLibCheck` is
 on (TS 4.9 vs newer dependency typings) and `import/no-unresolved` is off
 (eslint-plugin-import 2.22 can't read package `exports` subpaths).
+
+## SEO (added 2026-08-31)
+
+- `public/robots.txt` (allow all) + `public/sitemap.xml` (6 clean URLs,
+  priorities; update lastmod when pages change materially).
+- Every page: canonical link (clean URL), keyword-optimized title + meta
+  description, Open Graph + Twitter card tags pointing at
+  `img/og-image.png` (1200×630, generated from the brand palette —
+  regenerate if the brand changes).
+- JSON-LD: Organization + sameAs socials on index; Service ItemList on
+  services.
+- `firebase.json` hosting headers: 7-day cache on /img/**, 1-hour on css/js
+  (no filename hashing, so keep css cache short).
+- Owner actions (outside repo): Google Search Console domain property +
+  sitemap submission; ranking for generic "AI solutions" requires content
+  and backlinks over time — technical SEO alone doesn't do it.
+
+## Email templating (2026-08-31)
+
+Email composition moved fully server-side: `functions/src/emailTemplates.ts`
+builds both the branded auto-reply (light, table-based, inline-styled,
+600px, user values HTML-escaped) and the internal notification; the client
+(`contactform.js`) no longer writes a `message{}` payload — the lead doc is
+just the data fields. `sendLeadEmails` ignores any legacy `message` field
+from cached pages. To change email copy or styling, edit emailTemplates.ts
+only.

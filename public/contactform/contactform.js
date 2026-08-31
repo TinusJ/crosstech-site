@@ -74,16 +74,6 @@
         subject: sanitizeString(document.getElementById("subject").value),
         to: sanitizeString(document.getElementById("email").value),
         query: sanitizeString(document.getElementById("message").value),
-        message: {
-          subject: "CrossTech website query - " + ref,
-          html:
-            "<p>Thank you for your email.</p>" +
-            "<p>This is an automated response to let you know that we have received your request and will respond to you within the next one to two working days.</p>" +
-            "<p>Your reference number is " + ref + "</p>",
-          text:
-            "Thank you for your email. This is an automated response to let you know that we have received your request and will respond to you within the next one to two working days. Your reference number is " + ref,
-          ccUids: "h2irRfsH1pEk5vmx3oNn"
-        },
         timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
         actioned: false,
         emailSent: false,
