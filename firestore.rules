@@ -1,0 +1,27 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /leads/{leadID} {
+    allow read;
+    allow create; 
+      
+      function nameIsValid() {
+      	return request.resource.data.name is string &&
+        	request.resource.data.name.size() > 3;
+      }
+      
+      function emailIsValid() {
+      	return request.resource.data.email is string;
+      }
+      
+      function subjectIsValid() {
+      	return request.resource.data.subject is string &&
+        	request.resource.data.name.size() > 3;
+      }
+      
+      function messageIsValid() {
+      	return request.resource.data.message is string &&
+        	request.resource.data.name.size() > 3;
+      }
+    }
+  }
+}
