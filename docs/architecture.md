@@ -135,3 +135,19 @@ builds both the branded auto-reply (light, table-based, inline-styled,
 just the data fields. `sendLeadEmails` ignores any legacy `message` field
 from cached pages. To change email copy or styling, edit emailTemplates.ts
 only.
+
+## CI deploy (added 2026-08-31)
+
+`.github/workflows/deploy-hosting.yml` deploys `public/` to Firebase Hosting
+(production project `crosstech-site`, live channel) on every push to `main`
+that touches `public/**` or `firebase.json`. Functions/Firestore rules are
+NOT deployed by CI — do those deliberately with `firebase deploy` locally.
+
+Auth: the workflow uses the GitHub secret
+`FIREBASE_SERVICE_ACCOUNT_CROSSTECH_SITE` (a Firebase service-account JSON).
+The secret lives in GitHub repo settings, never in this public repo.
+One-time setup: run `firebase init hosting:github -P production` locally and
+point it at TinusJ/crosstech-site — the wizard creates the service account
+and uploads the secret with exactly that name (decline its offer to write
+workflow files; ours already exists). Rotate/revoke in Google Cloud IAM →
+Service Accounts if ever leaked.
