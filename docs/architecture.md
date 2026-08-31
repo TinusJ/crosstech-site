@@ -10,7 +10,7 @@ Bootstrap template is retired under `_old/` — gitignored, reference only.)*
 | Hosting | Firebase Hosting | `firebase.json` serves `public/` as-is; `cleanUrls: true`; **no rewrites**, so `404.html` is served for misses |
 | Frontend | Hand-written HTML5 + modern CSS + vanilla JS | No frameworks, no build step, no jQuery. One stylesheet (`css/style.css`) with design tokens at the top |
 | Database | Cloud Firestore | Single collection: `leads` (contact-form submissions) |
-| Functions | Firebase Cloud Functions (TS, Node 20) | Scaffold only — nothing exported or deployed |
+| Functions | Firebase Cloud Functions v2 (TS, Node 20) | `sendLeadEmails`: Firestore onCreate trigger for `leads` — sends auto-reply + internal notification via SMTP (nodemailer), flips `emailSent` |
 | Fonts | Google Fonts: Space Grotesk (display) + Inter (body) | Only external dependency besides Firebase |
 | Analytics | None | Old dead UA tag removed in the 2026 rebuild. If analytics returns, update the privacy policy too |
 
@@ -99,3 +99,13 @@ Admin SDK (bypasses rules). **Takes effect only after
 - No rewrites → unknown paths get `404.html` (the old catch-all rewrite that
   hid the 404 page is gone).
 - `trailingSlash: false`.
+
+## Deploying
+
+`deploy.mjs` at the repo root deploys everything in order: functions deps →
+lint → tsc build → verify `lib/index.js` exports something (hard stop if not,
+to avoid the CLI's delete-live-functions prompt) → single
+`firebase deploy --only hosting,firestore,functions`. Flags: `-P <alias>`
+passthrough, `--skip-functions`. Functions toolchain notes: `skipLibCheck` is
+on (TS 4.9 vs newer dependency typings) and `import/no-unresolved` is off
+(eslint-plugin-import 2.22 can't read package `exports` subpaths).

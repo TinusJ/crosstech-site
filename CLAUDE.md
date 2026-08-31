@@ -6,8 +6,10 @@
 ## What this is
 
 The **public marketing website** of CrossTech — an **AI-first software studio**
-in Pretoria, Gauteng, South Africa (contact: info@crosstech.solutions).
-Live at **https://crosstech.solutions**, deployed on **Firebase Hosting**.
+(contact: info@crosstech.solutions). Live at **https://crosstech.solutions**,
+deployed on **Firebase Hosting**. NOTE (owner decision, 2026-08-31): the site
+deliberately shows **no physical location** — copy says "working with clients
+worldwide". Don't reintroduce Pretoria/South Africa into site copy.
 
 History: founded 2019 as a mobile-app development company; **pivoted in 2026**
 to building software broadly with AI as the primary focus. The site was fully
@@ -47,8 +49,10 @@ website/
 ├── firebase.json          Hosting: serves public/, cleanUrls, no rewrites (404.html works)
 ├── .firebaserc            Firebase projects: default=crosstech-1adc3, production=crosstech-site
 ├── firestore.rules        leads: create-only with validation, NO public read (deploy required — see below)
-├── functions/             Cloud Functions scaffold (TS, Node 20) — ALL CODE COMMENTED OUT, nothing deployed
+├── functions/             Cloud Functions (TS, Node 20): sendLeadEmails — auto-reply + notify on new leads
+├── deploy.mjs             Deploy script: node deploy.mjs [-P production] [--skip-functions]
 ├── _old/                  Retired 2019 template site + assets (gitignored, reference only)
+├── tests/                 Firestore rules test (emulator): cd tests && npm install && npm run test:rules
 └── public/                ← the entire deployed site (11 files)
     ├── index.html         Home: hero, what-we-do, how-we-work, stats, CTA
     ├── about.html         Story (mobile→AI pivot), mission/approach/vision, beliefs
@@ -81,11 +85,21 @@ website/
 
 - Preview: `firebase serve` (required for clean URLs AND for the contact form's
   `/__/firebase/*` scripts; opening files directly won't exercise either).
-- Deploy site: `firebase deploy --only hosting` (`-P production` for the prod
-  project alias).
-- Deploy rules: `firebase deploy --only firestore:rules` — **required once**:
-  the fixed rules (no public read on `leads`) are committed but only take
-  effect when deployed. Test the contact form end-to-end right after.
+- **Deploy everything: `node deploy.mjs`** (`-P production` for the prod
+  alias; `--skip-functions` for hosting + Firestore only). The script lints
+  and builds functions, refuses to deploy them if nothing is exported (an
+  empty functions deploy prompts to delete live functions), then runs one
+  `firebase deploy --only hosting,firestore,functions`.
+- First functions deploy: needs the Blaze plan; the CLI prompts for SMTP
+  params (SMTP_HOST, SMTP_PORT, SMTP_USER, MAIL_FROM, MAIL_NOTIFY) and the
+  SMTP_PASS secret. Values land in Firebase, never in the repo
+  (`functions/.env*` is gitignored).
+- One-time per project: the **Secret Manager API** must be enabled in Google
+  Cloud before the SMTP_PASS secret can be stored (403 from
+  secretmanager.googleapis.com otherwise) — enable it at
+  console.developers.google.com/apis/api/secretmanager.googleapis.com for the
+  target project, wait a minute, re-run the deploy. The CLI auto-enables the
+  other required APIs (Cloud Build, Artifact Registry, Cloud Run) itself.
 
 ## Open items
 

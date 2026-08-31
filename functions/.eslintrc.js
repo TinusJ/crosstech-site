@@ -25,6 +25,9 @@ module.exports = {
     "import",
   ],
   rules: {
-    quotes: ["error", "double"],
+    "quotes": ["error", "double"],
+    // eslint-plugin-import (v2.22) cannot resolve package.json "exports"
+    // subpaths like firebase-functions/v2 — TypeScript checks these instead.
+    "import/no-unresolved": 0,
   },
 };
