@@ -1,0 +1,39 @@
+# Deploys the site to Firebase Hosting (production project: crosstech-site)
+# on every push to main that touches the site.
+#
+# One-time setup (no credentials in this public repo — they live in a GitHub
+# secret): create the secret FIREBASE_SERVICE_ACCOUNT_CROSSTECH_SITE, see
+# README note below the workflow or docs/architecture.md.
+name: Deploy to Firebase Hosting
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "public/**"
+      - "firebase.json"
+      - ".github/workflows/deploy-hosting.yml"
+
+permissions:
+  contents: read
+  checks: write
+
+concurrency:
+  group: firebase-hosting-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to live channel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Firebase Hosting (live)
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CROSSTECH_SITE }}
+          channelId: live
+          projectId: crosstech-site
