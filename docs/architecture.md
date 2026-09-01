@@ -11,7 +11,7 @@ Bootstrap template is retired under `_old/` — gitignored, reference only.)*
 | Frontend | Hand-written HTML5 + modern CSS + vanilla JS | No frameworks, no build step, no jQuery. One stylesheet (`css/style.css`) with design tokens at the top |
 | Database | Cloud Firestore | Single collection: `leads` (contact-form submissions) |
 | Functions | Firebase Cloud Functions v2 (TS, Node 20) | `sendLeadEmails`: Firestore onCreate trigger for `leads` — sends auto-reply + internal notification via SMTP (nodemailer), flips `emailSent` |
-| Fonts | Google Fonts: Space Grotesk (display) + Inter (body) | Only external dependency besides Firebase |
+| Fonts | Self-hosted WOFF2 in `public/fonts/` (Inter 400/500/600, Space Grotesk 500/700, OFL) via `@font-face` at the top of `style.css` | Switched from Google Fonts 2026-09-01 (GDPR: no IP disclosure to Google). Firebase on /contact is now the only third-party request |
 | Analytics | None | Old dead UA tag removed in the 2026 rebuild. If analytics returns, update the privacy policy too |
 
 Firebase projects (`.firebaserc`): `default` → `crosstech-1adc3`,

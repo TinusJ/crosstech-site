@@ -26,12 +26,12 @@ rebuild are listed at the bottom so future readers know they're gone.
 
 ## Open — owner's call
 
-3. **Privacy policy still covers only the mobile apps.** The website itself
-   collects name/email/message into Firestore via the contact form; the policy
-   doesn't mention it (POPIA-relevant). Analytics was removed in the rebuild,
-   which narrows the gap, but a website privacy section is still the proper
-   fix. Substance changes need the owner's sign-off — see docs/legal-pages.md.
-4. **Terms have no governing-law clause** (unchanged from 2023).
+3. *(fixed 2026-09-01)* ~~Privacy policy still covers only the mobile apps~~ —
+   v2.0 rewrite covers the website (GDPR/UAVG, POPIA, US state laws, Canada).
+   See docs/legal-pages.md for the remaining **owner to-dos** the policy now
+   depends on (retention TTL, IO registration, PAIA manual, address/KvK).
+4. *(fixed 2026-09-01)* ~~Terms have no governing-law clause~~ — Dutch law,
+   Amsterdam courts, with consumer/ZA/NA carve-outs (Terms v2.0).
 5. *(superseded 2026-08-31)* `functions/` is no longer an empty scaffold:
    `sendLeadEmails` (auto-reply + internal notification on new leads) is
    implemented, lints and builds clean, and deploys via `deploy.mjs`. New

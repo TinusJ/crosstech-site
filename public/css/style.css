@@ -4,6 +4,13 @@
    Design tokens up top; everything derives from them.
    ============================================================ */
 
+/* ---- Self-hosted fonts (SIL OFL 1.1, see /fonts/) — no requests to Google Fonts ---- */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/inter-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 500; font-display: swap; src: url("/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap; src: url("/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 500; font-display: swap; src: url("/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); }
+
 :root {
   --bg: #081119;
   --bg-soft: #0b1722;
@@ -382,6 +389,8 @@ h1, h2, h3, h4 {
 .contact-info .line { color: var(--text); margin-bottom: 0.4rem; }
 
 form.contact-form { display: grid; gap: 1rem; }
+.form-privacy { color: var(--faint); font-size: 0.84rem; line-height: 1.5; margin: -0.2rem 0 0; }
+.form-privacy a { color: var(--muted); }
 
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 @media (max-width: 640px) { .field-row { grid-template-columns: 1fr; } }
@@ -428,6 +437,43 @@ form.contact-form { display: grid; gap: 1rem; }
 .page-head { padding: calc(var(--header-h) + 4rem) 0 3rem; }
 .page-head h1 { font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 0.8rem; }
 .page-head p { color: var(--muted); max-width: 44rem; }
+
+/* ---------- Legal pages (privacy / terms) ---------- */
+
+.prose.legal { max-width: 50rem; }
+.prose h3 { font-size: 1.02rem; margin: 1.5rem 0 0.45rem; color: var(--text); }
+.prose p + p { margin-top: 0.7rem; }
+.prose ul, .prose ol { margin-bottom: 0.6rem; }
+.prose ol { padding-left: 1.3rem; margin-top: 0.5rem; }
+.prose li { margin-bottom: 0.3rem; }
+.prose a { color: var(--accent); }
+.legal-summary {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.5rem;
+  margin: 0 0 1.6rem;
+}
+.legal-summary h2 { margin: 0 0 0.6rem; font-size: 1.05rem; }
+.legal-summary ul { margin: 0; }
+.legal-summary li { color: var(--text); }
+.legal-toc {
+  columns: 2;
+  column-gap: 2rem;
+  font-size: 0.92rem;
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+}
+@media (max-width: 640px) { .legal-toc { columns: 1; } }
+.legal-toc li { break-inside: avoid; }
+.table-wrap { overflow-x: auto; margin: 0.8rem 0 1.2rem; border: 1px solid var(--card-border); border-radius: var(--radius); }
+.prose table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 640px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 0.7rem 0.85rem; border-bottom: 1px solid var(--card-border); color: var(--muted); }
+.prose th { color: var(--text); font-weight: 600; background: var(--bg-soft); white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td strong { color: var(--text); }
+.legal-note { color: var(--faint); font-size: 0.88rem; border-top: 1px solid var(--card-border); padding-top: 1rem; margin-top: 2.4rem; }
 
 /* ---------- Footer ---------- */
 
