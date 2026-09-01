@@ -147,7 +147,7 @@ Auth: the workflow uses the GitHub secret
 `FIREBASE_SERVICE_ACCOUNT_CROSSTECH_SITE` (a Firebase service-account JSON).
 The secret lives in GitHub repo settings, never in this public repo.
 One-time setup: run `firebase init hosting:github -P production` locally and
-point it at TinusJ/crosstech-site — the wizard creates the service account
+point it at crosstech-solutions-bv/crosstech-site — the wizard creates the service account
 and uploads the secret with exactly that name (decline its offer to write
 workflow files; ours already exists). Rotate/revoke in Google Cloud IAM →
 Service Accounts if ever leaked.

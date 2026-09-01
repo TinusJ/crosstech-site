@@ -20,7 +20,7 @@ What is in `public/` is exactly what gets deployed.
 
 ## Hard rules for this repo
 
-1. **This repo is PUBLIC on GitHub** (`github.com/TinusJ/crosstech-site`).
+1. **This repo is PUBLIC on GitHub** (`github.com/crosstech-solutions-bv/crosstech-site`).
    **Never commit credentials, API keys, service accounts, tokens, or `.env`
    files.** There are none today — keep it that way.
    - The Firebase web config is intentionally NOT in the repo: `contact.html`
