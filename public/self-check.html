@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Guides — Practical AI for Business | CrossTech</title>
+    <meta name="description" content="A free 2-minute self-check: pick the manual work your business does, and see where AI and automation would pay off first. Runs entirely in your browser.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="canonical" href="https://crosstech.solutions/self-check">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CrossTech">
+    <meta property="og:title" content="AI Self-Check — Where Should Automation Start?">
+    <meta property="og:description" content="Pick the manual work your business does; see where AI would pay off first. 2 minutes, in your browser.">
+    <meta property="og:url" content="https://crosstech.solutions/self-check">
+    <meta property="og:image" content="https://crosstech.solutions/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@CrossTech5">
+    <meta name="twitter:title" content="AI Self-Check — Where Should Automation Start?">
+    <meta name="twitter:description" content="Pick the manual work your business does; see where AI would pay off first. 2 minutes, in your browser.">
+    <meta name="twitter:image" content="https://crosstech.solutions/img/og-image.png">
+</head>
+
+<body>
+    <header class="site-header" id="siteHeader">
+        <div class="container">
+            <a class="logo" href="/">CrossTech<span class="dot">.</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/services">Services</a>
+                <a href="/contact">Contact</a>
+                <a class="btn btn-primary" href="/contact">Start a project</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-head">
+            <div class="container">
+                <span class="eyebrow">Self-check</span>
+                <h1>Where should AI start in <span class="grad-text">your business</span>?</h1>
+                <p>Tick the manual work that happens in your company, tell us roughly how much time it eats, and
+                    get an honest first-priority ranking &mdash; the same logic we use in our audits. Two minutes.
+                    Everything runs in your browser: nothing you enter is sent anywhere.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container" style="max-width: 820px;">
+                <div id="sc-app">
+                    <h2 class="section-title" style="font-size:1.3rem;">1. Which of these happen manually in your business?</h2>
+                    <div id="sc-list" style="margin-top:1.4rem;"></div>
+                    <h2 class="section-title" style="font-size:1.3rem; margin-top:2.4rem;">2. See your ranking</h2>
+                    <p style="color:var(--muted); margin-top:0.6rem;">We rank by hours eaten vs. how costly a rare
+                        mistake would be &mdash; start where the hours are big and the risk is small.</p>
+                    <button class="btn btn-primary" id="sc-go" style="margin-top:1.2rem;">Show me where to start</button>
+                    <div id="sc-result" style="margin-top:2rem;"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="cta-band">
+                    <h2>Want the human version of this?</h2>
+                    <p>The free AI Opportunity Audit is this exercise done properly: a 30-minute call about how your
+                        business actually runs, then a written automation map. If AI isn't worth it for you, we'll
+                        say so.</p>
+                    <a class="btn btn-primary" href="/contact">Book your free audit</a>
+                </div>
+            </div>
+        </section>
+
+        <script>
+        (function () {
+            var WORKFLOWS = [
+                { id: 'inbox',   name: 'Inbox triage', desc: 'Someone reads every email to decide who handles it' },
+                { id: 'copy',    name: 'Copy-paste between systems', desc: 'Form \u2192 spreadsheet \u2192 invoice tool \u2192 CRM' },
+                { id: 'faq',     name: 'Answering the same questions', desc: 'Your team types the same answers to customers again and again' },
+                { id: 'reports', name: 'Recurring reports', desc: 'Numbers pulled from several tools into one document, every week or month' },
+                { id: 'chase',   name: 'Chasing people', desc: 'Unpaid invoices, unsigned documents, unanswered quotes' },
+                { id: 'entry',   name: 'Data entry from documents', desc: 'Retyping information from invoices, forms or PDFs into a system' },
+                { id: 'sched',   name: 'Scheduling & coordination', desc: 'Back-and-forth to plan appointments, jobs or shifts' },
+                { id: 'checks',  name: 'Manual checks & approvals', desc: 'A person reviews routine items that almost always pass' }
+            ];
+            var HOURS = [ ['1\u20132 h/week', 1.5], ['3\u20135 h/week', 4], ['6\u201310 h/week', 8], ['10+ h/week', 12] ];
+            var RISK = [ ['Low \u2014 a mistake is easily fixed', 1.0], ['Medium \u2014 a mistake is annoying', 0.6], ['High \u2014 a mistake is expensive', 0.25] ];
+
+            var list = document.getElementById('sc-list');
+            WORKFLOWS.forEach(function (w) {
+                var card = document.createElement('div');
+                card.className = 'card';
+                card.style.marginBottom = '0.8rem';
+                card.innerHTML =
+                    '<label style="display:flex; gap:0.8rem; align-items:flex-start; cursor:pointer;">' +
+                    '<input type="checkbox" id="cb-' + w.id + '" style="margin-top:0.35rem; accent-color: var(--accent);">' +
+                    '<span><strong>' + w.name + '</strong><br><span style="color:var(--muted); font-size:0.95rem;">' + w.desc + '</span></span></label>' +
+                    '<div id="opts-' + w.id + '" hidden style="margin-top:0.9rem; display:flex; gap:0.8rem; flex-wrap:wrap;">' +
+                    selectHtml('h-' + w.id, HOURS) + selectHtml('r-' + w.id, RISK) + '</div>';
+                list.appendChild(card);
+                card.querySelector('input').addEventListener('change', function (e) {
+                    var o = document.getElementById('opts-' + w.id);
+                    if (e.target.checked) { o.hidden = false; o.style.display = 'flex'; } else { o.hidden = true; o.style.display = 'none'; }
+                });
+            });
+
+            function selectHtml(id, opts) {
+                var s = '<select id="' + id + '" style="background:var(--bg-soft); color:var(--text); border:1px solid var(--card-border); border-radius:8px; padding:0.5rem 0.7rem;">';
+                opts.forEach(function (o, i) { s += '<option value="' + o[1] + '"' + (i === 0 ? ' selected' : '') + '>' + o[0] + '</option>'; });
+                return s + '</select>';
+            }
+
+            document.getElementById('sc-go').addEventListener('click', function () {
+                var picked = [];
+                WORKFLOWS.forEach(function (w) {
+                    if (document.getElementById('cb-' + w.id).checked) {
+                        var hours = parseFloat(document.getElementById('h-' + w.id).value);
+                        var risk = parseFloat(document.getElementById('r-' + w.id).value);
+                        picked.push({ w: w, hours: hours, risk: risk, score: hours * risk });
+                    }
+                });
+                var out = document.getElementById('sc-result');
+                if (!picked.length) {
+                    out.innerHTML = '<div class="card"><p>Nothing ticked yet \u2014 either your operations are unusually tidy, or the manual work is hiding. Both are worth a conversation.</p></div>';
+                    return;
+                }
+                picked.sort(function (a, b) { return b.score - a.score; });
+                var total = picked.reduce(function (s, p) { return s + p.hours; }, 0);
+                var html = '<div class="card featured"><h3>Start here: ' + picked[0].w.name + '</h3>' +
+                    '<p>Biggest win for the smallest risk of the options you ticked. Across everything you selected, roughly <strong>' +
+                    Math.round(total) + ' hours a week</strong> of manual work is in play \u2014 by your own numbers.</p></div>';
+                if (picked.length > 1) {
+                    html += '<div class="card" style="margin-top:0.8rem;"><h3>Then, in order</h3><ol style="color:var(--muted); padding-left:1.2rem; margin-top:0.6rem;">';
+                    picked.slice(1).forEach(function (p) {
+                        html += '<li style="margin-bottom:0.3rem;">' + p.w.name + (p.risk <= 0.25 ? ' \u2014 <em>high mistake cost: automatable, but needs guardrails; talk to us first</em>' : '') + '</li>';
+                    });
+                    html += '</ol></div>';
+                }
+                html += '<p style="margin-top:1rem; color:var(--muted);">This is a rough cut, not an audit \u2014 it only knows what you ticked. The real version looks at your actual systems.</p>' +
+                    '<a class="btn btn-primary" style="margin-top:0.8rem;" href="/contact">Turn this into a real automation map \u2014 free</a>';
+                out.innerHTML = html;
+                out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        })();
+        </script>
+</main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>CrossTech</h4>
+                    <p>An AI-first software studio working with clients worldwide. We design, build and run
+                        intelligent software — and the platforms it lives on.</p>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/mcp">MCP connectors</a></li>
+                        <li><a href="/work">Work</a></li>
+                        <li><a href="/guides">Guides</a></li>
+                        <li><a href="/self-check">Self-check</a></li>
+                        <li><a href="/colophon">This site</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get in touch</h4>
+                    <p><a href="mailto:info@crosstech.solutions">info@crosstech.solutions</a></p>
+                    <p><a href="https://twitter.com/CrossTech5" target="_blank" rel="noopener">X / Twitter</a> &middot;
+                        <a href="https://github.com/crosstech-solutions-bv" target="_blank" rel="noopener">GitHub</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; <span id="year"></span> CrossTech. All rights reserved.</span>
+                <span><a href="/privacy">Privacy Policy</a> &middot; <a href="/terms">Terms &amp;
+                        Conditions</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
