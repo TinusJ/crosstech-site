@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>About This Site &mdash; Proof, Not Promises | CrossTech</title>
+    <meta name="description" content="How crosstech.solutions is built: hand-written HTML, CSS and vanilla JS, no frameworks, no build step, no trackers, no cookies — deployed verbatim from a public GitHub repo. Verify everything yourself.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="canonical" href="https://crosstech.solutions/colophon">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CrossTech">
+    <meta property="og:title" content="About This Site — Proof, Not Promises | CrossTech">
+    <meta property="og:description" content="How crosstech.solutions is built: hand-written HTML, CSS and vanilla JS, no frameworks, no build step, no trackers, no cookies — deployed verbatim from a public GitHub repo. Verify everything yourself.">
+    <meta property="og:url" content="https://crosstech.solutions/colophon">
+    <meta property="og:image" content="https://crosstech.solutions/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@CrossTech5">
+    <meta name="twitter:title" content="About This Site — Proof, Not Promises | CrossTech">
+    <meta name="twitter:description" content="How crosstech.solutions is built: hand-written HTML, CSS and vanilla JS, no frameworks, no build step, no trackers, no cookies — deployed verbatim from a public GitHub repo. Verify everything yourself.">
+    <meta name="twitter:image" content="https://crosstech.solutions/img/og-image.png">
+</head>
+
+<body>
+    <header class="site-header" id="siteHeader">
+        <div class="container">
+            <a class="logo" href="/">CrossTech<span class="dot">.</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/services">Services</a>
+                <a href="/contact">Contact</a>
+                <a class="btn btn-primary" href="/contact">Start a project</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-head">
+            <div class="container">
+                <span class="eyebrow">About this site</span>
+                <h1>The site you're reading is <span class="grad-text">our proof</span>.</h1>
+                <p>Most agency websites are heavy, script-laden and quietly watching you. This one is the opposite
+                    &mdash; deliberately. We say we build lean, honest software; this page is where you can check
+                    that claim against something we actually shipped. Every statement below is verifiable from your
+                    browser or from our public repository.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title reveal">Open your dev tools. Count along.</h2>
+                <div class="stats" style="margin-top: 2rem;">
+                    <div class="stat reveal"><b>0</b><span>JavaScript frameworks</span></div>
+                    <div class="stat reveal"><b>0</b><span>Trackers or analytics scripts</span></div>
+                    <div class="stat reveal"><b>0</b><span>Cookies</span></div>
+                    <div class="stat reveal"><b>~13&nbsp;KB</b><span>Of CSS &mdash; hand-written, one file</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container">
+                <span class="eyebrow reveal">How it's built</span>
+                <h2 class="section-title reveal">Hand-written. <span class="grad-text">Shipped verbatim</span>.</h2>
+                <p class="section-lead reveal">No pipeline of tools between what we write and what you receive
+                    &mdash; the files we commit are the files your browser gets.</p>
+                <div class="grid cols-3" style="margin-top: 2.4rem;">
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#9997;&#65039;</div>
+                        <h3>Written by hand</h3>
+                        <p>HTML, CSS and vanilla JavaScript, typed out and read in full by the people who ship it.
+                            No frameworks, no template soup &mdash; view the source of this very page and you'll see
+                            markup a human can actually follow.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#128230;</div>
+                        <h3>Zero build step</h3>
+                        <p>Nothing is compiled, bundled, minified or transpiled. What sits in the repository is
+                            byte-for-byte what gets deployed &mdash; which means there's nowhere for cruft to hide.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#128640;</div>
+                        <h3>Public repo, CI deploy</h3>
+                        <p>The whole site lives in a public GitHub repository and deploys to Firebase Hosting
+                            automatically on every push. Anyone &mdash; including you &mdash; can read the source of
+                            this exact page. <a href="https://github.com/crosstech-solutions-bv/crosstech-site"
+                                target="_blank" rel="noopener">Browse the repo &rarr;</a></p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <span class="eyebrow reveal">Why it matters to you</span>
+                <h2 class="section-title reveal">The way we build our site is the way we'd build <span
+                        class="grad-text">yours</span>.</h2>
+                <div class="grid cols-3" style="margin-top: 2.4rem;">
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#9889;</div>
+                        <h3>Fast everywhere</h3>
+                        <p>Pages this lean load fast on any connection &mdash; a hotel wifi, a train, an old phone.
+                            Speed isn't a plugin you add later; it's what's left when you don't add the bloat in the
+                            first place.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#128274;</div>
+                        <h3>Nothing collected</h3>
+                        <p>We collect nothing about visitors beyond what you choose to type in the contact form
+                            &mdash; and even that is handled by our own pipeline: your message gets a reference
+                            number and an instant auto-reply, with no third-party form service in between.
+                            <a href="/work">See how that pipeline is built &rarr;</a></p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#129529;</div>
+                        <h3>Same philosophy, for clients</h3>
+                        <p>Lean where lean wins, heavier tools only when they earn their place. The discipline you
+                            can inspect on this page is the same one we bring to the software we build for you.</p>
+                    </article>
+                </div>
+                <p class="reveal" style="margin-top: 2.4rem; color: var(--muted); max-width: 46rem;">
+                    <strong style="color: var(--text);">Honest limits:</strong> lean doesn't mean magic. This site
+                    uses the browser's native capabilities rather than reinventing them, and it isn't entirely
+                    self-contained: the only external requests are the ones each page openly declares in its own
+                    &lt;head&gt; &mdash; two font families (Inter and Space Grotesk) loaded from Google Fonts.
+                    Everything else &mdash; stylesheet, script, images &mdash; is served from our own domain. You can
+                    confirm all of it in your browser's network tab.</p>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container">
+                <div class="cta-band reveal">
+                    <h2>Judge us by what you can verify.</h2>
+                    <p>Start with a free AI Opportunity Audit: a 30-minute call, then a written automation map for
+                        your business. If AI isn't worth it for you, we'll say so.</p>
+                    <a class="btn btn-primary" href="/contact">Book your free audit</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>CrossTech</h4>
+                    <p>An AI-first software studio working with clients worldwide. We design, build and run
+                        intelligent software — and the platforms it lives on.</p>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/mcp">MCP connectors</a></li>
+                        <li><a href="/work">Work</a></li>
+                        <li><a href="/guides">Guides</a></li>
+                        <li><a href="/colophon">This site</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get in touch</h4>
+                    <p><a href="mailto:info@crosstech.solutions">info@crosstech.solutions</a></p>
+                    <p><a href="https://twitter.com/CrossTech5" target="_blank" rel="noopener">X / Twitter</a> &middot;
+                        <a href="https://github.com/crosstech-solutions-bv" target="_blank" rel="noopener">GitHub</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; <span id="year"></span> CrossTech. All rights reserved.</span>
+                <span><a href="/privacy">Privacy Policy</a> &middot; <a href="/terms">Terms &amp;
+                        Conditions</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Work — Real Systems We Built &amp; Run | CrossTech</title>
+    <meta name="description" content="No borrowed logos, no invented case studies. Three production systems CrossTech built and runs — this website, the lead pipeline behind it, and the open-source Swing MCP server — with the code public where it can be.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="canonical" href="https://crosstech.solutions/work">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CrossTech">
+    <meta property="og:title" content="Work — Real Systems We Built &amp; Run | CrossTech">
+    <meta property="og:description" content="No borrowed logos, no invented case studies. Three production systems CrossTech built and runs — with the code public where it can be.">
+    <meta property="og:url" content="https://crosstech.solutions/work">
+    <meta property="og:image" content="https://crosstech.solutions/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@CrossTech5">
+    <meta name="twitter:title" content="Work — Real Systems We Built &amp; Run | CrossTech">
+    <meta name="twitter:description" content="No borrowed logos, no invented case studies. Three production systems CrossTech built and runs — with the code public where it can be.">
+    <meta name="twitter:image" content="https://crosstech.solutions/img/og-image.png">
+</head>
+
+<body>
+    <header class="site-header" id="siteHeader">
+        <div class="container">
+            <a class="logo" href="/">CrossTech<span class="dot">.</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/services">Services</a>
+                <a href="/contact">Contact</a>
+                <a class="btn btn-primary" href="/contact">Start a project</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-head">
+            <div class="container">
+                <span class="eyebrow">Work</span>
+                <h1>Proof you can <span class="grad-text">check</span> &mdash; not logos you can't.</h1>
+                <p>We're an AI-first studio without a wall of client logos, and we won't invent one. What we have
+                    instead: our own production systems &mdash; built exactly the way we build for clients, running
+                    right now, with the code public wherever it can be. Every claim on this page is inspectable.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <span class="eyebrow reveal">Case study 01 &middot; Web &amp; AI-assisted delivery</span>
+                <h2 class="section-title reveal">This website &mdash; rebuilt <span class="grad-text">in one
+                        day</span>.</h2>
+                <p class="section-lead reveal"><strong>The problem.</strong> Our old site was a 2019-era
+                    jQuery/Bootstrap template &mdash; heavy, generic, and nothing like the engineering we sell.
+                    A studio that pitches lean, modern software can't hide behind a template.</p>
+                <div class="grid cols-3">
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#9889;</div>
+                        <h3>What we built</h3>
+                        <p>A complete rebuild in a single day (31 August 2026): hand-written HTML, CSS and vanilla
+                            JavaScript. Zero frameworks, zero build step, no trackers, no cookies, no analytics
+                            scripts. AI-assisted throughout &mdash; every decision made by a human.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#128295;</div>
+                        <h3>How it works</h3>
+                        <p>The entire stylesheet is about 13&nbsp;KB. Pages ship exactly as written &mdash; no
+                            bundler, no transpiler, nothing between the repo and your browser. Every push to the
+                            public GitHub repo deploys automatically via CI to Firebase Hosting.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#9989;</div>
+                        <h3>What this proves</h3>
+                        <p>Lean engineering is a choice, not a limitation &mdash; and AI-assisted development is
+                            fast when humans stay in charge of the decisions. The site you're reading is the
+                            evidence, and its source is one click away.</p>
+                    </article>
+                </div>
+                <p class="reveal" style="margin-top: 2rem;">Don't take our word for it &mdash;
+                    <a href="https://github.com/crosstech-solutions-bv/crosstech-site" target="_blank"
+                        rel="noopener">read the site's source on GitHub&nbsp;&rarr;</a></p>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container">
+                <span class="eyebrow reveal">Case study 02 &middot; Automation</span>
+                <h2 class="section-title reveal">The lead pipeline <span class="grad-text">behind this
+                        site</span>.</h2>
+                <p class="section-lead reveal"><strong>The problem.</strong> A contact form that dumps messages into
+                    an inbox &mdash; or worse, a third-party form SaaS &mdash; means manual copy-paste, slow replies,
+                    and someone else holding your leads. Exactly the kind of small, dull friction we tell clients to
+                    automate away.</p>
+                <div class="grid cols-3">
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#128229;</div>
+                        <h3>What we built</h3>
+                        <p>An end-to-end pipeline we own outright: the contact form writes each enquiry to a
+                            Firestore <code>leads</code> collection, the visitor instantly gets a reference number
+                            on screen, and an automatic confirmation lands in their inbox. No form SaaS anywhere
+                            in the chain.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#128295;</div>
+                        <h3>How it works</h3>
+                        <p>Firestore security rules are create-only &mdash; the public can add a lead, never read
+                            or alter one. Each lead gets a 10-character reference number shown to the visitor. A
+                            Cloud Function fires on the Firestore write and sends the auto-reply over SMTP with
+                            nodemailer, quoting that reference.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#9989;</div>
+                        <h3>What this proves</h3>
+                        <p>Small, reliable automation that removes manual work &mdash; designed with least-access
+                            security from the first line. This is the shape of most first projects we build for
+                            clients: unglamorous, wired into what already exists, and it just runs.</p>
+                    </article>
+                </div>
+                <p class="reveal" style="margin-top: 2rem;">Want to see it in action? Send us a message via the
+                    <a href="/contact">contact form</a> and watch your reference number arrive.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <span class="eyebrow reveal">Case study 03 &middot; AI connectors (MCP)</span>
+                <h2 class="section-title reveal">Swing MCP &mdash; AI hands on <span class="grad-text">&ldquo;legacy&rdquo;
+                        desktop software</span>.</h2>
+                <p class="section-lead reveal"><strong>The problem.</strong> Businesses run on Java Swing desktop
+                    applications that most agencies write off as untouchable &mdash; no API, no web interface, no way
+                    for an AI assistant to help. That software isn't going anywhere; the tooling had to come to it.</p>
+                <div class="grid cols-3">
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#129302;</div>
+                        <h3>What we built</h3>
+                        <p>Swing&nbsp;MCP: an open-source MCP server that lets AI assistants operate Java Swing
+                            apps directly &mdash; take UI snapshots, click, type, fill forms, read tables and
+                            trees, drive menus and dialogs, capture screenshots. Now at v1.1.0 and listed in the
+                            MCP registry.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#128295;</div>
+                        <h3>How it works</h3>
+                        <p>A multi-module Maven project on Java&nbsp;21 and Spring Boot. A Java agent attaches to
+                            the target application and exposes its live UI over MCP &mdash; the open standard,
+                            originated at Anthropic in 2024 and since adopted across the AI industry. Installable
+                            as an MCPB bundle.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#9989;</div>
+                        <h3>What this proves</h3>
+                        <p>We build AI connectors for the software everyone else calls impossible &mdash; and we do
+                            it in the open, where anyone can audit the code, file an issue, or run it against
+                            their own systems before ever talking to us.</p>
+                    </article>
+                </div>
+                <p class="reveal" style="margin-top: 2rem;">It's all public &mdash;
+                    <a href="https://github.com/crosstech-solutions-bv/swing-mcp" target="_blank"
+                        rel="noopener">explore Swing&nbsp;MCP on GitHub&nbsp;&rarr;</a></p>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container">
+                <div class="cta-band reveal">
+                    <h2>Your system could be case study 04.</h2>
+                    <p>Start with a free AI Opportunity Audit: a 30-minute call, then a written automation map for
+                        your business within a week. If AI isn't worth it for you, we'll say so &mdash; honesty is
+                        the whole point of this page.</p>
+                    <a class="btn btn-primary" href="/contact">Book your free audit</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>CrossTech</h4>
+                    <p>An AI-first software studio working with clients worldwide. We design, build and run
+                        intelligent software — and the platforms it lives on.</p>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/mcp">MCP connectors</a></li>
+                        <li><a href="/work">Work</a></li>
+                        <li><a href="/guides">Guides</a></li>
+                        <li><a href="/colophon">This site</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get in touch</h4>
+                    <p><a href="mailto:info@crosstech.solutions">info@crosstech.solutions</a></p>
+                    <p><a href="https://twitter.com/CrossTech5" target="_blank" rel="noopener">X / Twitter</a> &middot;
+                        <a href="https://github.com/crosstech-solutions-bv" target="_blank" rel="noopener">GitHub</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; <span id="year"></span> CrossTech. All rights reserved.</span>
+                <span><a href="/privacy">Privacy Policy</a> &middot; <a href="/terms">Terms &amp;
+                        Conditions</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

@@ -30,4 +30,39 @@
     <lastmod>2026-08-31</lastmod>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://crosstech.solutions/mcp</loc>
+    <lastmod>2026-09-01</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://crosstech.solutions/work</loc>
+    <lastmod>2026-09-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://crosstech.solutions/guides</loc>
+    <lastmod>2026-09-01</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crosstech.solutions/guides/where-businesses-lose-hours</loc>
+    <lastmod>2026-09-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crosstech.solutions/guides/picking-your-first-automation</loc>
+    <lastmod>2026-09-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crosstech.solutions/guides/what-is-mcp-for-business</loc>
+    <lastmod>2026-09-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crosstech.solutions/colophon</loc>
+    <lastmod>2026-09-01</lastmod>
+    <priority>0.4</priority>
+  </url>
 </urlset>

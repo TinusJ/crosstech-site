@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>What Is MCP? A Plain-Language Guide for Business Owners — CrossTech</title>
+    <meta name="description" content="MCP is the open standard that lets AI assistants work with the software your business already runs — CRM, invoicing, even legacy desktop apps. What it is, what a connector does in practice, and what it costs to explore.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="canonical" href="https://crosstech.solutions/guides/what-is-mcp-for-business">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="CrossTech">
+    <meta property="og:title" content="What Is MCP? A Plain-Language Guide for Business Owners">
+    <meta property="og:description" content="MCP is the open standard that lets AI assistants work with the software your business already runs. What it is, what a connector does in practice, and what it costs to explore.">
+    <meta property="og:url" content="https://crosstech.solutions/guides/what-is-mcp-for-business">
+    <meta property="og:image" content="https://crosstech.solutions/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@CrossTech5">
+    <meta name="twitter:title" content="What Is MCP? A Plain-Language Guide for Business Owners">
+    <meta name="twitter:description" content="MCP is the open standard that lets AI assistants work with the software your business already runs. What it is, what a connector does in practice, and what it costs to explore.">
+    <meta name="twitter:image" content="https://crosstech.solutions/img/og-image.png">
+</head>
+
+<body>
+    <header class="site-header" id="siteHeader">
+        <div class="container">
+            <a class="logo" href="/">CrossTech<span class="dot">.</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/services">Services</a>
+                <a href="/contact">Contact</a>
+                <a class="btn btn-primary" href="/contact">Start a project</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-head">
+            <div class="container">
+                <span class="eyebrow">Guides</span>
+                <h1>What is MCP? A <span class="grad-text">plain-language</span> guide for business owners.</h1>
+                <p>The standard that lets AI assistants work with the software you already run — no rip-and-replace
+                    required.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="prose">
+                    <h2>The problem: your data lives where AI can't reach it</h2>
+                    <p>Ask a modern AI assistant a general question and it's remarkably capable. Ask it
+                        &ldquo;which of <em>our</em> invoices are overdue?&rdquo; and it has no idea — because that
+                        answer lives inside your invoicing system, your CRM, your planning tool, maybe a desktop
+                        application from 2009. The assistant is smart; it just can't see your business. So people
+                        end up copy-pasting between their apps and a chat window, which recreates the manual work
+                        AI was supposed to remove.</p>
+
+                    <h2>What MCP is</h2>
+                    <p>MCP — the Model Context Protocol — is an open standard for connecting AI assistants to
+                        tools and data. It originated at Anthropic in November 2024, and since then it has been
+                        adopted broadly across the industry: OpenAI, Google and others announced support during
+                        2025. In practice that means it isn't one vendor's plug format — it's a common language,
+                        so a connector you build for your systems works with the major AI assistants rather than
+                        locking you to one.</p>
+                    <p>A useful mental model: MCP is a standard socket. Your software gets one fitted, and any
+                        compatible AI assistant can plug in — through a door you define, not through the walls.</p>
+
+                    <h2>What a connector does in practice</h2>
+                    <p>An MCP connector is a small piece of software that sits next to one of your systems and
+                        exposes specific things an AI is allowed to see and do. With one in place, the day-to-day
+                        looks like this:</p>
+                    <ul>
+                        <li>Someone on your team asks, in plain language: &ldquo;Which invoices are more than 30
+                            days overdue?&rdquo; or &ldquo;Summarise this customer's history before my 2 o'clock
+                            call.&rdquo;</li>
+                        <li>The assistant reads the answer from your real system through the connector — and, where
+                            you've allowed it, acts too: drafting the reminder email, creating the follow-up task,
+                            updating the record.</li>
+                        <li>Everything happens inside limits you set. A connector is permissioned — you decide
+                            exactly which data it can read and which actions it can take — and its activity can be
+                            logged, so you can see what the AI did and when.</li>
+                    </ul>
+                    <p>Your existing software stays exactly where it is. Nothing is migrated, nothing is replaced.
+                        The connector is the door, and you hold the keys.</p>
+
+                    <h2>What about legacy and desktop software?</h2>
+                    <p>This is where it gets interesting for businesses whose critical tools aren't shiny cloud
+                        apps. Plenty of companies run on desktop software — often Java applications that have
+                        quietly done the job for fifteen years and have no API at all. Conventional wisdom says
+                        those can't join the AI era without a rewrite.</p>
+                    <p>They can. As a working, open-source example: we built <strong>Swing&nbsp;MCP</strong>, a
+                        connector that lets AI assistants operate Java Swing desktop applications directly — taking
+                        snapshots of the interface, clicking buttons, typing, filling forms, reading tables and
+                        trees, working menus and dialogs. It's the kind of &ldquo;legacy&rdquo; software most
+                        agencies won't touch, connected to AI without changing a line of the original application.
+                        The code is public on
+                        <a href="https://github.com/crosstech-solutions-bv/swing-mcp" target="_blank"
+                            rel="noopener">GitHub</a>, so you don't have to take our word for it.</p>
+                    <p>The broader point: if software runs your business, there is very likely a safe, standard
+                        way to let AI work with it — whether it lives in the cloud, on a server, or on the PC in
+                        the back office.</p>
+
+                    <h2>What it costs to explore</h2>
+                    <p>Nothing, to start. Our free AI Opportunity Audit is a 30-minute call about how your business
+                        actually runs and which systems you use; within a week you get a short written automation
+                        map — what's worth connecting or automating first, roughly what it takes, and what we'd
+                        skip. If a connector is the right move, a first working one typically takes two to four
+                        weeks. And if AI isn't worth it for your case, the audit will say exactly that — free
+                        advice to not hire us is part of the deal.</p>
+                    <p><a href="/guides">&larr; Back to guides</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="cta-band reveal">
+                    <h2>Start with a free AI Opportunity Audit.</h2>
+                    <p>A 30-minute call, then a written automation map for your business. If AI isn't worth it for
+                        you, we'll say so &mdash; that's the honest version of &ldquo;talk to us&rdquo;.</p>
+                    <a class="btn btn-primary" href="/contact">Book your free audit</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>CrossTech</h4>
+                    <p>An AI-first software studio working with clients worldwide. We design, build and run
+                        intelligent software — and the platforms it lives on.</p>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/mcp">MCP connectors</a></li>
+                        <li><a href="/work">Work</a></li>
+                        <li><a href="/guides">Guides</a></li>
+                        <li><a href="/colophon">This site</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get in touch</h4>
+                    <p><a href="mailto:info@crosstech.solutions">info@crosstech.solutions</a></p>
+                    <p><a href="https://twitter.com/CrossTech5" target="_blank" rel="noopener">X / Twitter</a> &middot;
+                        <a href="https://github.com/crosstech-solutions-bv" target="_blank" rel="noopener">GitHub</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; <span id="year"></span> CrossTech. All rights reserved.</span>
+                <span><a href="/privacy">Privacy Policy</a> &middot; <a href="/terms">Terms &amp;
+                        Conditions</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
