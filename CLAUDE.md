@@ -76,7 +76,8 @@ website/
   font/css includes are copy-pasted in all 7 pages. A shared change must be
   applied to: index, about, services, contact, privacy, terms (404 has no
   chrome). Nav marks the current page with `aria-current="page"`.
-- Fonts: Space Grotesk (display) + Inter (body) from Google Fonts. Icons are
+- Fonts: Space Grotesk (display) + Inter (body), self-hosted from `public/fonts/`
+  (`@font-face` at the top of style.css; never re-add Google Fonts links). Icons are
   emoji in `.card .icon` — no icon font.
 - Scroll-in animation = add class `reveal`; `js/main.js` handles the rest
   (with reduced-motion fallback).

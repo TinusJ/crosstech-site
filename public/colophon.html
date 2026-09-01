@@ -7,11 +7,6 @@
     <meta name="description" content="How crosstech.solutions is built: hand-written HTML, CSS and vanilla JS, no frameworks, no build step, no trackers, no cookies — deployed verbatim from a public GitHub repo. Verify everything yourself.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/img/favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
-        rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link rel="canonical" href="https://crosstech.solutions/colophon">
     <meta property="og:type" content="website">
@@ -131,10 +126,10 @@
                 <p class="reveal" style="margin-top: 2.4rem; color: var(--muted); max-width: 46rem;">
                     <strong style="color: var(--text);">Honest limits:</strong> lean doesn't mean magic. This site
                     uses the browser's native capabilities rather than reinventing them, and it isn't entirely
-                    self-contained: the only external requests are the ones each page openly declares in its own
-                    &lt;head&gt; &mdash; two font families (Inter and Space Grotesk) loaded from Google Fonts.
-                    Everything else &mdash; stylesheet, script, images &mdash; is served from our own domain. You can
-                    confirm all of it in your browser's network tab.</p>
+                    self-contained: the contact page loads Google's Firebase library so your message can be
+                    delivered. Everything else &mdash; stylesheet, script, images, and the two font families (Inter
+                    and Space Grotesk, self-hosted since September 2026 so no request goes to Google Fonts) &mdash; is
+                    served from our own domain. You can confirm all of it in your browser's network tab.</p>
             </div>
         </section>
 
