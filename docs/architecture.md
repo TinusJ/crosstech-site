@@ -151,3 +151,10 @@ point it at crosstech-solutions-bv/crosstech-site — the wizard creates the ser
 and uploads the secret with exactly that name (decline its offer to write
 workflow files; ours already exists). Rotate/revoke in Google Cloud IAM →
 Service Accounts if ever leaked.
+
+## /swing-mcp (added 2026-09-04)
+Landing page for the open-source Swing MCP server — the `websiteUrl`/`homepage` target
+of the MCP Registry listing and the .mcpb manifest. Assets: `img/swing-mcp-icon.png`
+(also referenced by `server.json` icons — keep the URL stable), `img/swing-mcp/`
+(demo.gif + 3 screenshots, copied from the swing-mcp repo's `docs/demo.gif` and
+`mcpb/assets/`). Page-specific CSS is inline in the file (`.sm-*` classes).

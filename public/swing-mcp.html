@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Swing MCP — AI hands for Java Swing desktop apps | CrossTech</title>
+    <meta name="description" content="Swing MCP is an open-source MCP server that lets Claude and other AI assistants operate Java Swing desktop applications: see the UI as a component tree, click, fill forms, read tables, handle dialogs. No API, no rewrite. Install in Claude Desktop in two minutes.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/favicon.png">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="canonical" href="https://crosstech.solutions/swing-mcp">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CrossTech">
+    <meta property="og:title" content="Swing MCP — AI hands for Java Swing desktop apps">
+    <meta property="og:description" content="Open-source MCP server: Claude sees your Swing app's UI as a component tree, clicks, fills forms, reads tables, handles dialogs. No API, no rewrite.">
+    <meta property="og:url" content="https://crosstech.solutions/swing-mcp">
+    <meta property="og:image" content="https://crosstech.solutions/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@CrossTech5">
+    <meta name="twitter:title" content="Swing MCP — AI hands for Java Swing desktop apps">
+    <meta name="twitter:description" content="Open-source MCP server: Claude sees your Swing app's UI as a component tree, clicks, fills forms, reads tables, handles dialogs. No API, no rewrite.">
+    <meta name="twitter:image" content="https://crosstech.solutions/img/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Swing MCP",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Windows, macOS, Linux",
+      "softwareRequirements": "Java 21 or newer",
+      "license": "https://opensource.org/licenses/MIT",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "url": "https://crosstech.solutions/swing-mcp",
+      "downloadUrl": "https://github.com/crosstech-solutions-bv/swing-mcp/releases/latest",
+      "codeRepository": "https://github.com/crosstech-solutions-bv/swing-mcp",
+      "image": "https://crosstech.solutions/img/swing-mcp-icon.png",
+      "description": "An open-source MCP server that lets AI assistants operate Java Swing desktop applications: snapshot the component tree, click, fill forms, read tables and trees, drive menus and dialogs.",
+      "author": { "@type": "Organization", "name": "CrossTech", "url": "https://crosstech.solutions" }
+    }
+    </script>
+    <style>
+        .sm-hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 3rem; align-items: center; }
+        @media (max-width: 860px) { .sm-hero { grid-template-columns: 1fr; } }
+        .sm-hero .actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.6rem; align-items: center; }
+        .sm-hero .actions small { color: var(--faint); font-size: 0.86rem; flex-basis: 100%; }
+        .sm-demo { border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; background: #000; }
+        .sm-demo img { display: block; width: 100%; height: auto; }
+        .sm-shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+        @media (max-width: 760px) { .sm-shots { grid-template-columns: 1fr; } }
+        .sm-shots figure { margin: 0; border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; background: var(--card); }
+        .sm-shots img { display: block; width: 100%; height: auto; }
+        .sm-shots figcaption { padding: 0.7rem 0.9rem; color: var(--muted); font-size: 0.88rem; }
+        .sm-code { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 1rem 1.2rem; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9rem; color: var(--text); overflow-x: auto; margin-top: 0.8rem; }
+        .sm-code span { color: var(--accent); }
+    </style>
+</head>
+
+<body>
+    <header class="site-header" id="siteHeader">
+        <div class="container">
+            <a class="logo" href="/">CrossTech<span class="dot">.</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/services">Services</a>
+                <a href="/contact">Contact</a>
+                <a class="btn btn-primary" href="/contact">Start a project</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-head">
+            <div class="container sm-hero">
+                <div>
+                    <span class="eyebrow">Open source &middot; MIT &middot; Java 21+</span>
+                    <h1>Swing MCP: <span class="grad-text">AI hands</span> for Java Swing desktop apps.</h1>
+                    <p>An MCP server that lets Claude and other AI assistants operate any Java Swing application:
+                        see the UI as a component tree, click, type, fill forms, read tables and trees, drive menus
+                        and dialogs. No API. No rewrite. The app never knows.</p>
+                    <div class="actions">
+                        <a class="btn btn-primary" href="https://github.com/crosstech-solutions-bv/swing-mcp/releases/latest/download/swing-mcp.mcpb">Download for Claude Desktop</a>
+                        <a class="btn btn-ghost" href="https://github.com/crosstech-solutions-bv/swing-mcp" target="_blank" rel="noopener">Source on GitHub</a>
+                        <small>swing-mcp.mcpb &middot; one file, installs as a Claude Desktop extension &middot; listed in the official MCP Registry as <code>io.github.crosstech-solutions-bv/swing-mcp</code></small>
+                    </div>
+                </div>
+                <div class="sm-demo">
+                    <img src="/img/swing-mcp/demo.gif" width="622" height="525" alt="Swing MCP driving the demo application: snapshots, clicks, form filling, tables, trees, menus and dialogs" loading="eager">
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title reveal">What the assistant can do once it's inside.</h2>
+                <p class="section-lead reveal">The agent loads into the app's JVM and exposes 39 tools over MCP. Everything
+                    runs on the Swing event thread, so it behaves like a very fast, very patient user.</p>
+                <div class="grid cols-3">
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#128065;&#65039;</div>
+                        <h3>See the UI</h3>
+                        <p>A structured snapshot of the component tree &mdash; every button, field, table, tree, menu and
+                            dialog with a stable id &mdash; instead of guessing from pixels. Find components by text,
+                            name, tooltip or class.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#128433;&#65039;</div>
+                        <h3>Act in it</h3>
+                        <p>Click, hover, focus, type, fill text fields and spinners, pick combo-box options, select
+                            table cells and tree nodes, drive menus and right-click menus, drag, scroll, press keys.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#128202;</div>
+                        <h3>Read data out</h3>
+                        <p>Whole <code>JTable</code> contents as structured data, list and tree items, component
+                            properties, the clipboard, and screenshots of a window or a single component.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#128276;</div>
+                        <h3>Handle the awkward parts</h3>
+                        <p>Modal dialogs are detected and answered instead of blocking the session. <code>wait_for</code>
+                            waits for UI conditions. Several apps can be driven in parallel sessions.</p>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon" aria-hidden="true">&#128268;</div>
+                        <h3>Launch or attach</h3>
+                        <p>Start the app with the agent preloaded, or attach to an already-running JVM by process id
+                            &mdash; useful for the tool that has been open on someone's desk since 2014.</p>
+                    </article>
+                    <article class="card featured reveal">
+                        <div class="icon" aria-hidden="true">&#128274;</div>
+                        <h3>Locked down by default</h3>
+                        <p>The agent listens on loopback only and requires a per-session token. Arbitrary code
+                            execution in the target JVM (<code>evaluate_java</code>) is off unless you switch it on.
+                            Launched apps are closed when the server shuts down.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container">
+                <h2 class="section-title reveal">Two minutes to first click.</h2>
+                <div class="steps" style="margin-top: 2.4rem;">
+                    <div class="step reveal">
+                        <h3>Have Java 21 or newer on your <code>PATH</code></h3>
+                        <p>Any JDK build works. Check with <code>java -version</code>.</p>
+                    </div>
+                    <div class="step reveal">
+                        <h3>Download and open <code>swing-mcp.mcpb</code></h3>
+                        <p>Claude Desktop installs it as an extension. Using Claude Code, Cursor, VS Code, IntelliJ or
+                            Windsurf instead? The <a href="https://github.com/crosstech-solutions-bv/swing-mcp/blob/main/docs/installation.md" target="_blank" rel="noopener">installation guide</a> has the jar-based config for each.</p>
+                    </div>
+                    <div class="step reveal">
+                        <h3>Point it at your app</h3>
+                        <p>Ask the assistant to launch your application, or attach to a running one.</p>
+                        <div class="sm-code"><span>launch_app</span> path/to/your-app.jar &nbsp;&nbsp;<em style="color: var(--faint);">or</em>&nbsp;&nbsp; <span>attach_to_app</span> pid=12345</div>
+                    </div>
+                    <div class="step reveal">
+                        <h3>Take a snapshot and go</h3>
+                        <p><code>take_snapshot</code> returns the component tree with ids; from there the assistant
+                            clicks, fills and reads on its own. The <a href="https://github.com/crosstech-solutions-bv/swing-mcp/blob/main/docs/tool-reference.md" target="_blank" rel="noopener">tool reference</a> lists all 39 tools on one page.</p>
+                    </div>
+                </div>
+                <div class="sm-shots">
+                    <figure class="reveal"><img src="/img/swing-mcp/screenshot-forms.png" width="622" height="525" alt="Forms tab of the demo app filled by Swing MCP" loading="lazy"><figcaption>Text fields, password fields, spinners and text areas filled directly.</figcaption></figure>
+                    <figure class="reveal"><img src="/img/swing-mcp/screenshot-table.png" width="622" height="525" alt="JTable row selected and read by Swing MCP" loading="lazy"><figcaption>Table cells selectable; table models extracted as structured data.</figcaption></figure>
+                    <figure class="reveal"><img src="/img/swing-mcp/screenshot-dialog.png" width="622" height="525" alt="Modal About dialog detected by Swing MCP" loading="lazy"><figcaption>Modal dialogs detected and handled instead of blocking the session.</figcaption></figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <span class="eyebrow reveal">Why we built it</span>
+                <h2 class="section-title reveal">A lot of business software is a Swing window with <span class="grad-text">no door</span>.</h2>
+                <p class="section-lead reveal">ERP clients, point-of-sale screens, lab and logistics tools, internal apps
+                    written a decade ago: they work, nobody dares rewrite them, and they have no API. Swing MCP gives
+                    that software a safe, permissioned door into the AI era, without changing the application.</p>
+                <div class="grid cols-3">
+                    <article class="card reveal">
+                        <h3>UI testing that reads the tree</h3>
+                        <p>Exploratory and regression tests against the real application, driven by an assistant that
+                            sees components, not screenshots. Reproduce a bug from a sentence.</p>
+                    </article>
+                    <article class="card reveal">
+                        <h3>Data out of screens</h3>
+                        <p>Read that table the vendor never exposed. Pull records out of a tool whose only export is a
+                            printout.</p>
+                    </article>
+                    <article class="card reveal">
+                        <h3>Repetitive clicks, delegated</h3>
+                        <p>The forty-screen data-entry job, the daily status check, the nightly close: describe it once,
+                            let the assistant drive.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container">
+                <h2 class="section-title reveal">Straight answers.</h2>
+                <div class="faq reveal" style="margin-top: 2rem;">
+                    <details>
+                        <summary>Does it change my application?</summary>
+                        <p>No. The agent is a standard Java agent loaded into the JVM at launch (<code>-javaagent</code>)
+                            or attached afterwards by process id. Your code, jars and data are untouched; remove the
+                            agent and nothing remains.</p>
+                    </details>
+                    <details>
+                        <summary>Does it work with JavaFX, SWT or Electron apps?</summary>
+                        <p>Not today: Swing only. If you run a different desktop stack, that is exactly the kind of
+                            connector we build for clients &mdash; see below.</p>
+                    </details>
+                    <details>
+                        <summary>Which AI clients does it work with?</summary>
+                        <p>Anything that speaks MCP over stdio. Claude Desktop installs the bundle in one click; Claude
+                            Code, Cursor, VS Code, IntelliJ IDEA and Windsurf use the two jars with the config from the
+                            installation guide.</p>
+                    </details>
+                    <details>
+                        <summary>Is it safe to run against a production tool?</summary>
+                        <p>The agent only listens on localhost, only accepts commands carrying the per-session token it
+                            generated, and code execution inside the JVM is disabled by default. The assistant can do
+                            anything a user at the keyboard could &mdash; so give it the same account and permissions
+                            you would give a new colleague, and start on a test environment.</p>
+                    </details>
+                    <details>
+                        <summary>What does it cost?</summary>
+                        <p>Nothing. MIT licence, no telemetry, no account. CrossTech makes its living building
+                            connectors and AI systems for clients; Swing MCP is our public proof that we can.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="cta-band reveal">
+                    <h2>Need it wired into your own application?</h2>
+                    <p>We connect AI assistants to the software businesses actually run &mdash; Swing, web apps, internal
+                        tools, databases &mdash; with permissions, audit logs and the code handed over to you. Start with
+                        a free 30-minute look at your systems; if a connector isn't worth it for you, we'll say so.</p>
+                    <a class="btn btn-primary" href="/contact">Book a free audit</a>
+                    <p style="margin-top: 1rem; font-size: 0.95rem;"><a href="/mcp">How we build MCP connectors &rarr;</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>CrossTech</h4>
+                    <p>An AI-first software studio working with clients worldwide. We design, build and run
+                        intelligent software — and the platforms it lives on.</p>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/mcp">MCP connectors</a></li>
+                        <li><a href="/swing-mcp">Swing MCP</a></li>
+                        <li><a href="/work">Work</a></li>
+                        <li><a href="/guides">Guides</a></li>
+                        <li><a href="/self-check">Self-check</a></li>
+                        <li><a href="/colophon">This site</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get in touch</h4>
+                    <p><a href="mailto:info@crosstech.solutions">info@crosstech.solutions</a></p>
+                    <p><a href="https://twitter.com/CrossTech5" target="_blank" rel="noopener">X / Twitter</a> &middot;
+                        <a href="https://github.com/crosstech-solutions-bv" target="_blank" rel="noopener">GitHub</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; <span id="year"></span> CrossTech. All rights reserved.</span>
+                <span><a href="/privacy">Privacy Policy</a> &middot; <a href="/terms">Terms &amp;
+                        Conditions</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
